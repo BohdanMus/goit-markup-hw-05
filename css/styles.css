@@ -6,6 +6,8 @@
   --second-background-color: #f5f4fa;
   --third-background-color: #2f303a;
   --main-icon-color: #afb1b8;
+  --main-transition-duration: 2500ms;
+  --main-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 p,
@@ -107,6 +109,9 @@ body {
   line-height: 1.4;
   letter-spacing: 0.02em;
   color: var(--main-title-color);
+  transition-property: color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .contact-header-link {
   font-weight: 500;
@@ -114,6 +119,9 @@ body {
   line-height: 1.14;
   letter-spacing: 0.02em;
   color: var(--main-text-color);
+  transition-property: color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .icon-envelope {
   fill: currentColor;
@@ -136,7 +144,14 @@ body {
 .site-nav .nav-link.current {
   color: var(--main-accent-color);
 }
-
+.site-nav .nav-link.current::after {
+  content: "";
+  min-width: 48px;
+  height: 4px;
+  background: var(--main-accent-color);
+  border-radius: 2px;
+  display: flex;
+}
 /* ГЕРОЙ */
 .section-hero {
   height: 600px;
@@ -313,9 +328,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-property: background-color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .webstudio-soc-icon {
   fill: var(--main-icon-color);
+  transition-property: fill;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .webstudio-soc-link:focus,
 .webstudio-soc-link:hover {
@@ -353,9 +374,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-property: border-color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .client-icon {
   fill: var(--main-icon-color);
+  transition-property: fill;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .client-link:focus,
 .client-link:hover {
@@ -403,6 +430,9 @@ body {
   line-height: 1.71;
   letter-spacing: 0.03em;
   color: var(--main-background-color);
+  transition-property: color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .footer-mail {
   font-style: normal;
@@ -410,6 +440,9 @@ body {
   line-height: 1.71;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+  transition-property: color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .footer-tel {
   font-style: normal;
@@ -417,6 +450,9 @@ body {
   line-height: 1.71;
   letter-spacing: 0.03em;
   color: rgba(255, 255, 255, 0.6);
+  transition-property: color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .footer-address:focus,
 .footer-address:hover {
@@ -459,9 +495,15 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition-property: background-color;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .footer-soc-icon {
   fill: var(--main-background-color);
+  transition-property: fill;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 .footer-soc-link:focus,
 .footer-soc-link:hover {
@@ -488,6 +530,11 @@ body {
   border: #ffffff;
   margin-right: 8px;
   padding: 6px 22px;
+  transition: background-color var(--main-transition-duration)
+      var(--main-transition-timing-function),
+    color var(--main-transition-duration) var(--main-transition-timing-function),
+    box-shadow var(--main-transition-duration)
+      var(--main-transition-timing-function);
 }
 .filter-button:hover,
 .filter-button:focus {
@@ -495,7 +542,6 @@ body {
   color: var(--main-background-color);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08),
     0px 2px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
 }
 .portfolio-list {
   display: flex;
@@ -504,6 +550,9 @@ body {
 }
 .portfolio-item {
   width: calc((100% - 60px) / 3);
+  transition-property: box-shadow;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
 }
 
 .portfolio-wrap {
@@ -512,10 +561,50 @@ body {
   display: block;
   border: 1px solid #eeeeee;
 }
-.portfolio-link-wrap:hover,
-.portfolio-link-wrap:focus {
+.portfolio-item:hover,
+.portfolio-item:focus {
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
+}
+.portfolio-item:hover .portfolio-top-text {
+  transform: translateY(0);
+}
+.portfolio-top-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-top-text {
+  position: absolute;
+  top: 0;
+  padding: 63px 24px;
+  font-size: 18px;
+  line-height: 1.56;
+  letter-spacing: 0.03em;
+  color: var(--main-background-color);
+  background-color: rgba(33, 150, 243, 0.9);
+  height: 100%;
+  transform: translateY(100%);
+  transition-property: transform;
+  transition: var(--main-transition-duration)
+    var(--main-transition-timing-function);
+}
+.examples-top-wrap {
+  position: relative;
+}
+.examples-top-text {
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--main-background-color);
+  width: 370px;
+  height: 70px;
+  background: rgba(47, 48, 58, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .filter-list {
   display: flex;
